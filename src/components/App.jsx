@@ -11,7 +11,7 @@ export class App extends Component {
     bad: 0,
   };
 
-  static status = false;
+  static status = 'false';
 
   updateState = feedback => {
     this.setState(prevState => {
