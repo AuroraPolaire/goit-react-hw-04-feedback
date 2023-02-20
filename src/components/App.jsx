@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Buttons } from './Buttons/Buttons';
+import { FeedbackOptions } from './Buttons/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
 import { Section } from './Section/Section';
 import { Notification } from './Notification/Notification';
@@ -43,7 +43,10 @@ export class App extends Component {
     return (
       <>
         <Section title="Please leave feedback">
-          <Buttons updateState={this.updateState} />
+          <FeedbackOptions
+            options={['good', 'neutral', 'bad']}
+            updateState={this.updateState}
+          />
         </Section>
         <Section title="Statistics">
           {this.status === 'true' ? (
