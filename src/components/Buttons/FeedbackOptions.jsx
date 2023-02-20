@@ -1,4 +1,5 @@
 import { ButtonContainer } from './Buttons.styled';
+import PropTypes from 'prop-types';
 
 export const FeedbackOptions = ({ options, updateState }) => {
   return (
@@ -17,4 +18,9 @@ export const FeedbackOptions = ({ options, updateState }) => {
       })}
     </ButtonContainer>
   );
+};
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.array.isRequired,
+  updateState: PropTypes.func.isRequired,
 };

@@ -3,6 +3,7 @@ import { FeedbackOptions } from './Buttons/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
 import { Section } from './Section/Section';
 import { Notification } from './Notification/Notification';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
   state = {
@@ -65,3 +66,11 @@ export class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  feedback: PropTypes.string,
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
+  total: PropTypes.number,
+};
