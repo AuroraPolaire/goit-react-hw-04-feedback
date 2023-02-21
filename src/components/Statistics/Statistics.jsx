@@ -5,10 +5,10 @@ export const Statistics = ({
   good,
   neutral,
   bad,
-  countTotalFeedback,
+  totalFeedback,
   feedbackPercentage,
 }) => {
-  const total = countTotalFeedback(good, neutral, bad);
+  console.log(typeof feedbackPercentage);
   return (
     <StatList>
       <ul>
@@ -22,14 +22,11 @@ export const Statistics = ({
           Bad <span>{bad}</span>
         </li>
         <li>
-          Total <span>{total}</span>
+          Total <span>{totalFeedback}</span>
         </li>
-        {total > 0 ? (
-          <li>
-            Positive feedback:{' '}
-            <span>{feedbackPercentage(good, total).toFixed()}%</span>
-          </li>
-        ) : null}
+        <li>
+          Positive feedback: <span>{feedbackPercentage}%</span>
+        </li>
       </ul>
     </StatList>
   );
@@ -39,6 +36,6 @@ Statistics.propTypes = {
   good: PropTypes.number.isRequired,
   neutral: PropTypes.number.isRequired,
   bad: PropTypes.number.isRequired,
-  countTotalFeedback: PropTypes.func.isRequired,
-  feedbackPercentage: PropTypes.func.isRequired,
+  countTotalFeedback: PropTypes.number,
+  feedbackPercentage: PropTypes.number,
 };

@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { FeedbackOptions } from './Buttons/FeedbackOptions';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
 import { Section } from './Section/Section';
 import { Notification } from './Notification/Notification';
@@ -12,32 +12,16 @@ export class App extends Component {
     bad: 0,
   };
 
-  static status = 'false';
-
   updateState = feedback => {
-    this.setState(prevState => {
-      switch (feedback) {
-        case 'good':
-          this.status = 'true';
-          return { good: prevState.good + 1 };
-        case 'neutral':
-          this.status = 'true';
-          return { neutral: prevState.neutral + 1 };
-        case 'bad':
-          this.status = 'true';
-          return { bad: prevState.bad + 1 };
-        default:
-          throw new Error(`Unknown value of ${feedback}`);
-      }
-    });
+    this.setState(prevState => ({ [feedback]: prevState[feedback] + 1 }));
   };
 
-  countTotalFeedback(good, neutral, bad) {
-    return good + neutral + bad;
+  countTotalFeedback() {
+    return this.state.good + this.state.neutral + this.state.bad;
   }
 
-  countPositiveFeedbackPercentage(good, total) {
-    return (100 / total) * good;
+  countPositiveFeedbackPercentage() {
+    return Math.round((100 / this.countTotalFeedback()) * this.state.good);
   }
 
   render() {
@@ -50,13 +34,13 @@ export class App extends Component {
           />
         </Section>
         <Section title="Statistics">
-          {this.status === 'true' ? (
+          {this.countTotalFeedback() !== 0 ? (
             <Statistics
               good={this.state.good}
               neutral={this.state.neutral}
               bad={this.state.bad}
-              countTotalFeedback={this.countTotalFeedback}
-              feedbackPercentage={this.countPositiveFeedbackPercentage}
+              totalFeedback={this.countTotalFeedback()}
+              feedbackPercentage={this.countPositiveFeedbackPercentage()}
             />
           ) : (
             <Notification message="There is no feedback"></Notification>
