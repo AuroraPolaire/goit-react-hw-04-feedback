@@ -8,7 +8,6 @@ export const Statistics = ({
   totalFeedback,
   feedbackPercentage,
 }) => {
-  console.log(typeof feedbackPercentage);
   return (
     <StatList>
       <ul>
